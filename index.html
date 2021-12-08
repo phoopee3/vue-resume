@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Jason Lawton's Resume</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="assets/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/octicons.min.css">
+        <link rel="stylesheet" href="assets/style.css">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <div id="app" v-cloak>
+            <header id="header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-9 col-sm-push-3">
+                            <h1>
+                                {{data.header.name}}
+                            </h1>
+                            <h2>
+                                {{data.header.title}}
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="container">
+                <section id=contact class="row">
+                    <aside class="col-sm-3">
+                        <h3>Contact</h3>
+                    </aside>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div v-for="item in data.contact.data" :key="item.title" class="col-sm-6 col-xs-6">
+                                <strong>{{item.title}}</strong>
+                                <div>
+                                    <a v-if=item.link :href=item.link>{{item.content}}</a>
+                                    <span v-else>{{item.content}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="container">
+                <section id="about" class="row">
+                    <aside class="col-sm-3">
+                        <h3>About</h3>
+                    </aside>
+                    <div class="col-sm-9">
+                        <p>{{data.about.content}}</p>
+                    </div>
+                </section>
+            </div>
+
+            <div class="container">
+                <section id=profiles class="row">
+                    <aside class="col-sm-3">
+                        <h3>Profiles</h3>
+                    </aside>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div v-for="item in data.profiles.data" :key="item.title" class="col-sm-6 col-xs-6">
+                                <strong>{{item.title}}</strong>
+                                <div>
+                                    <a v-if=item.link :href=item.link>{{item.content}}</a>
+                                    <span v-else>{{item.content}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="container">
+                <section id=work class="row">
+                    <aside class="col-sm-3">
+                        <h3>Work</h3>
+                    </aside>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div v-for="work in data.work.data" :key="work.title" class="col-sm-12">
+                                <h4 class="strike-through">
+                                    <span>{{work.title}}</span>
+                                    <span v-if="work['date-from'] && work['date-to']" class="date">
+                                        {{work['date-from']}}
+                                        &nbsp;-&nbsp;
+                                        {{work['date-to']}}
+                                    </span>
+                                    <span v-else-if="work.date" class="date">
+                                        {{work.date}}
+                                    </span>
+                                </h4>
+                                <div v-if="work.link && work['link-text']" class="website pull-right">
+                                    <a :href=work.link>{{work['link-text']}}</a>
+                                </div>
+                                <div class="position">
+                                    {{work.subtitle}}
+                                </div>
+                                <div class="summary">
+                                    <div v-html=work.description></div>
+                                </div>
+                                <div>
+                                    <h4>{{work.highlights.title}}</h4>
+                                    <ul :class=work.highlights.title>
+                                        <li v-for="item in work.highlights.items" class="bullet">{{item.content}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="container">
+                <section id="volunteer" class="row">
+                    <aside class="col-sm-3">
+                        <h3>Volunteer</h3>
+                    </aside>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div v-for="volunteer in data.volunteer.data" :key="volunteer.title" class="col-sm-12">
+                                <h4 class="strike-through">
+                                    <span>{{volunteer.title}}</span>
+                                    <span v-if="volunteer['date-from'] && volunteer['date-to']" class="date">
+                                        {{volunteer['date-from']}}
+                                        &nbsp;-&nbsp;
+                                        {{volunteer['date-to']}}
+                                    </span>
+                                    <span v-else-if="volunteer.date" class="date">
+                                        {{volunteer.date}}
+                                    </span>
+                                </h4>
+                                <div v-if="volunteer.link && volunteer['link-text']" class="website pull-right">
+                                    <a :href=volunteer.link>{{volunteer['link-text']}}</a>
+                                </div>
+                                <div class="position">
+                                    {{volunteer.subtitle}}
+                                </div>
+                                <div class="summary">
+                                    <p>{{volunteer.description}}</p>
+                                </div>
+                                <div v-if=volunteer.highlights>
+                                    <h4>{{volunteer.highlights.title}}</h4>
+                                    <ul :class=volunteer.highlights.title>
+                                        <li v-for="item in volunteer.highlights.items" class="bullet">{{item.content}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <div class="container">
+                <section id="education" class="row">
+                    <aside class="col-sm-3">
+                        <h3>Education</h3>
+                    </aside>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div v-for="education in data.education.data" :key="education.title" class="col-sm-12">
+                                <h4 class="strike-through">
+                                    <span>{{education.title}}</span>
+                                    <span v-if="education['date-from'] && education['date-to']" class="date">
+                                        {{education['date-from']}}
+                                        &nbsp;-&nbsp;
+                                        {{education['date-to']}}
+                                    </span>
+                                    <span v-else-if="education.date" class="date">
+                                        {{education.date}}
+                                    </span>
+                                </h4>
+                                <div v-if="education.link && education['link-text']" class="website pull-right">
+                                    <a :href=education.link>{{education['link-text']}}</a>
+                                </div>
+                                <div class="area">
+                                    {{education.major}}
+                                </div>
+                                <div class="studyType">
+                                    <p>{{education.degree}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="container">
+                <section id="publications" class="row">
+                    <aside class="col-sm-3">
+                        <h3>Publications</h3>
+                    </aside>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div v-for="publication in data.publications.data" :key="publication.title" class="col-sm-12">
+                                <h4 class="strike-through">
+                                    <span>{{publication.title}}</span>
+                                    <span v-if="publication['date-from'] && publication['date-to']" class="date">
+                                        {{publication['date-from']}}
+                                        &nbsp;-&nbsp;
+                                        {{publication['date-to']}}
+                                    </span>
+                                    <span v-else-if="publication.date" class="date">
+                                        {{publication.date}}
+                                    </span>
+                                </h4>
+                                <div v-if="publication.link && publication['link-text']" class="website pull-right">
+                                    <a :href=publication.link><span class="sr-only">{{publication.link}}</span></a>
+                                </div>
+                                <div class="publisher">
+                                    <em>Published by</em>&nbsp;
+                                    <strong>{{publication['published-by']}}</strong>
+                                </div>
+                                <div class="summary">
+                                    <p>{{publication.description}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="container">
+                <section id="skills" class="row">
+                    <aside class="col-sm-3">
+                        <h3>Skills</h3>
+                    </aside>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div v-for="skill in data.skills.data" :key="skill.title" class="col-sm-4">
+                                <h4>{{skill.title}}</h4>
+                                <ul :class=skill.title>
+                                    <li v-for="item in skill.items" class="bullet">{{item.content}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="container">
+                <section id="interests" class="row">
+                    <aside class="col-sm-3">
+                        <h3>Interests</h3>
+                    </aside>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div v-for="interest in data.interests.data" :key="interest.title" class="col-sm-6">
+                                <h4>{{interest.title}}</h4>
+                                <ul :class=interest.title>
+                                    <li v-for="item in interest.items" class="bullet">{{item.content}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- development version, includes helpful console warnings -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> -->
+        <!-- production version, optimized for size and speed -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+        
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    data: {
+                        header:{},
+                        contact: {},
+                        about: {},
+                        profiles: {},
+                        work: {},
+                        volunteer: {},
+                        education: {},
+                        publications: {},
+                        skills: {},
+                        interests: {},
+                    }
+                },
+                created: function () {
+                    var vm = this;
+                    // `this` points to the vm instance
+                    // console.log(`created`);
+                    fetch('https://raw.githubusercontent.com/phoopee3/resume/master/resume.json')
+                        .then(response => response.json())
+                        .then(data => vm.data = data);
+                }
+            })
+        </script>
+    </body>
+</html>
