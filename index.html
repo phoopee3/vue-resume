@@ -296,7 +296,8 @@
                     var vm = this;
                     // `this` points to the vm instance
                     // console.log(`created`);
-                    fetch('https://raw.githubusercontent.com/phoopee3/resume/master/resume.json')
+                    // was using https://raw.githubusercontent.com/phoopee3/resume/master/resume.json
+                    fetch('https://gitcdn.link/cdn/phoopee3/resume/master/resume.json')
                         .then(response => response.json())
                         .then(data => vm.data = data);
                 }
