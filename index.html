@@ -112,9 +112,9 @@
                                 <div class="summary">
                                     <div v-html=work.description></div>
                                 </div>
-                                <div>
+                                <div :class="work.title.replace(/[\W_]+/g,'-').toLowerCase() + ' ' + work.highlights.title.toLowerCase()">
                                     <h4>{{work.highlights.title}}</h4>
-                                    <ul :class=work.highlights.title>
+                                    <ul>
                                         <li v-for="item in work.highlights.items" class="bullet">{{item.content}}</li>
                                     </ul>
                                 </div>
@@ -152,7 +152,7 @@
                                 <div class="summary">
                                     <p>{{volunteer.description}}</p>
                                 </div>
-                                <div v-if=volunteer.highlights>
+                                <div v-if=volunteer.highlights :class="volunteer.title.replace(/[\W_]+/g,'-').toLowerCase() + ' ' + volunteer.highlights.title.toLowerCase()">
                                     <h4>{{volunteer.highlights.title}}</h4>
                                     <ul :class=volunteer.highlights.title>
                                         <li v-for="item in volunteer.highlights.items" class="bullet">{{item.content}}</li>
@@ -294,9 +294,11 @@
                 },
                 created: function () {
                     var vm = this;
+                    // var resume_url = 'https://raw.githubusercontent.com/phoopee3/resume/master/resume.json';
+                    var resume_url = 'https://vue-resume.local/local-resume.json';
                     // `this` points to the vm instance
                     // console.log(`created`);
-                    fetch('https://raw.githubusercontent.com/phoopee3/resume/master/resume.json')
+                    fetch(resume_url)
                         .then(response => response.json())
                         .then(data => vm.data = data);
                 }
