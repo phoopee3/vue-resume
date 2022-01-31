@@ -55,8 +55,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 /* from resume.html */
@@ -152,6 +151,7 @@ h4 span:first-child{
 #education .area{
     font-weight:bold;
 }
+/*
 #education .area:before{
     content:"\f0d7";
     font:16px Octicons;
@@ -160,6 +160,7 @@ h4 span:first-child{
 #education .studyType{
     margin-left:25px;
 }
+*/
 #awards .summary,#publications .summary{
     margin-top:8px;
 }
@@ -235,10 +236,16 @@ h4 span:first-child{
 		page-break-before : always;
 	}
 	#work {
-		/*page-break-before : always;*/
+		/* page-break-before : always; */
 	}
+    #work .merck-cella.highlights {
+        page-break-before: always !important;
+    }
 	#volunteer {
-		/*page-break-before : always;*/
+		page-break-before : always !important;
+	}
+	#publications {
+		page-break-before : always !important;
 	}
 	#skills {
 		/*page-break-before : always;*/
