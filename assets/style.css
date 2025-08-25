@@ -41,6 +41,13 @@
 [v-cloak] {
     display:none;
 }
+html {
+    font-size: 16px; /* Set the base font size */
+}
+
+body {
+    font-size: 1rem; /* Use relative units for scalability */
+}
 
 body {
     background-color: var(--main-background-color);
@@ -110,10 +117,10 @@ h4 span:first-child{
     color:var(--main-font-color);
     font-weight:bold;
 }
-.container{
+/* .container{
     max-width:750px;
     padding:0 30px;
-}
+} */
 .col-sm-6{
     margin-bottom:10px;
 }
@@ -239,13 +246,13 @@ h4 span:first-child{
 		/* page-break-before : always; */
 	}
     #work .merck-cella.highlights {
-        page-break-before: always !important;
+        /* page-break-before: always !important; */
     }
 	#volunteer {
-		page-break-before : always !important;
+		/* page-break-before : always !important; */
 	}
 	#publications {
-		page-break-before : always !important;
+		/* page-break-before : always !important; */
 	}
 	#skills {
 		/*page-break-before : always;*/
